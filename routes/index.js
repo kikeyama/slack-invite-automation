@@ -8,6 +8,22 @@ const { badge } = require('../lib/badge');
 
 const sanitize = require('sanitize');
 
+// Datadog Express Integration
+var dd_options = {
+  'response_code':true,
+  'tags': ['app:my_app']
+    }
+
+var connect_datadog = require('connect-datadog')(dd_options);
+
+// Add your other middlewares
+app.use(...);
+
+// Add the datadog-middleware before your router
+app.use(connect_datadog);
+app.use(router);
+// Datadog Express Integration
+
 router.get('/', function(req, res) {
   res.setLocale(config.locale);
   res.render('index', { community: config.community,
