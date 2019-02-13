@@ -1,4 +1,6 @@
-const tracer = require('dd-trace').init();
+const tracer = require('dd-trace').init({
+  logInjection: true
+});
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
